@@ -1,8 +1,10 @@
+// 2.1.4 good
 // 2.2.0-RC1 good
 // 2.2.0-RC2 good
 // 2.2.0-RC3 good
 // 2.2.0+ bad
-val catsEffectVer = "2.2.0"
+val catsEffectVer = "2.1.4"
+//val catsEffectVer = "2.2.0"
 //val catsEffectVer = "2.2.0"
 //val catsEffectVer = "2.3.0"
 
