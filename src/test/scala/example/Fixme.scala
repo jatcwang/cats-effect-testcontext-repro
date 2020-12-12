@@ -3,12 +3,15 @@ package example
 import org.scalatest.freespec.AsyncFreeSpec
 import cats.effect._
 import cats.effect.laws.util.TestContext
+
+import java.util.concurrent.Executors
 import scala.collection.mutable
 import scala.concurrent.{ExecutionContext, Future}
 import scala.concurrent.duration._
 
 class Fixme extends AsyncFreeSpec {
-  val execContextOfScalatest: ExecutionContext = this.executionContext
+  val execContextOfScalatest: ExecutionContext =
+    ExecutionContext.fromExecutorService(Executors.newScheduledThreadPool(4))
 
   "hmm" in {
     val tc = TestContext()
@@ -33,7 +36,8 @@ class Fixme extends AsyncFreeSpec {
     val blocker: Blocker = Blocker.liftExecutionContext(execContextOfScalatest)
 
     (for {
-      // Comment this line out and tests pass (tc.tick runs myio correct)
+      // Comment this expression out and tests pass (tc.tick runs myio correct)
+      // The other way to fix this is to add IO.shift(execContextOfScalatest) after this expression
       _ <- blocker.delay[IO, Unit] {
         println(s"println in blocker $curThreadName")
       }(

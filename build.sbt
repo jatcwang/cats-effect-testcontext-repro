@@ -3,8 +3,9 @@
 // 2.2.0-RC2 good
 // 2.2.0-RC3 good
 // 2.2.0+ bad
-val catsEffectVer = "2.1.4"
-//val catsEffectVer = "2.2.0"
+//val catsEffectVer = "2.1.4"
+//val catsEffectVer = "2.2.0-RC3"
+val catsEffectVer = "2.2.0"
 //val catsEffectVer = "2.2.0"
 //val catsEffectVer = "2.3.0"
 
@@ -16,9 +17,11 @@ lazy val root = Project("root", file("."))
       "org.typelevel" %% "cats-core" % "2.3.0",
       "org.typelevel" %% "cats-effect" % catsEffectVer,
 //      "co.fs2" %% "fs2-core" % "2.4.6",
-      "org.typelevel" %% "cats-effect-laws" % catsEffectVer % Test,
+      "org.typelevel" %% "cats-effect-laws" % catsEffectVer,
       "org.scalatest" %% "scalatest" % "3.2.3" % Test,
     ),
+    fork := true,
+//    javaOptions += "-Dcats.effect.stackTracingMode=disabled",
   )
 
 lazy val commonSettings = Seq(
